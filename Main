@@ -1,0 +1,21 @@
+import requests
+import config
+
+def get_gold_price():
+    api_url = config.API_URL
+    headers = {'X-Api-Key': config.API_KEY}
+    response = requests.get(api_url, headers=headers)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
+
+def main():
+    gold_price = get_gold_price()
+    if gold_price:
+        print(f"ราคาทองคำปัจจุบัน: {gold_price}")
+    else:
+        print("ไม่สามารถดึงราคาทองคำได้")
+
+if __name__ == "__main__":
+    main()
